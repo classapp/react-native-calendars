@@ -116,7 +116,10 @@ export default class AgendaView extends Component {
     this.onSnapAfterDrag = this.onSnapAfterDrag.bind(this);
     this.generateMarkings = this.generateMarkings.bind(this);
     this.knobTracker = new VelocityTracker();
-    this.state.scrollY.addListener(({value}) => this.knobTracker.add(value));
+    this.state.scrollY.addListener(({value}) => {
+      console.warn('HERE');
+      this.knobTracker.add(value);
+    });
   }
 
   calendarOffset() {
@@ -169,6 +172,8 @@ export default class AgendaView extends Component {
     this.headerState = 'dragged';
     this.knobTracker.reset();
   }
+
+
 
   onSnapAfterDrag(e) {
     // on Android onTouchEnd is not called if dragging was started
